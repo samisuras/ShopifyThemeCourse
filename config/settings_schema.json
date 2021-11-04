@@ -1,0 +1,21 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Leema",
+    "theme_version": "2.3.0",
+    "theme_author": "Raul Leos",
+    "theme_documentation_url": "https://help.shopify.com/manual/online-store/themes/os20/themes-by-shopify/dawn",
+    "theme_support_url": "https://support.shopify.com/"
+  },
+  {
+    "name": "Navigational Bar Colors Settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "navbar_color",
+        "label": "NavBar Background Color",
+        "default": "#000"
+      }
+    ]
+  }
+]
