@@ -2,20 +2,37 @@
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
 
+{%- render 'banner-a-b' -%}
 
-{%- paginate blog.articles by 6 -%}
-
-  <div class="main-blog page-width">
-    <h1 class="title--primary">{{ blog.title | escape }}</h1>
-
-    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+{%- paginate blog.articles by 2 -%}
+<div class="container my-5 p-2">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3 py-5" >
       {%- for article in blog.articles -%}
-        <div class="blog-articles__article article">
-          {%- render 'article-card', article: article, image_height: section.settings.image_height, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author -%}
+        <div class="col">
+          <div class="card shadow">
+            {% if article.image.src != null %}
+              <img src="{{ article.image.src | image_url }}" class="card-img-top" alt="{{ article.image.alt }}">
+            {% else %}
+              {{ 'image' | placeholder_svg_tag:'card-img-top' }}  
+            {% endif %}
+
+            <div class="card-body">
+              <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+              {{ article.author }} @ {{ article.created_at | date}}
+              <p  class="card-text">
+                {% if article.excerpt.size > 0 %}
+                  {{ article.excerpt }}
+                {% else %}
+                  <p>{{ article.content | strip_html | truncatewords: 100 }}</p>    
+                {% endif %}
+              </p>
+              <!-- Renderizar el bloque del snippet -->
+              <!-- {%- render 'article-card', article: article, image_height: section.settings.image_height, show_image: section.settings.show_image, show_date: section.settings.show_date, show_author: section.settings.show_author -%} -->
+            </div>
+          </div>
         </div>
       {%- endfor -%}
     </div>
-
     {%- if paginate.pages > 1 -%}
       {%- render 'pagination', paginate: paginate -%}
     {%- endif -%}
