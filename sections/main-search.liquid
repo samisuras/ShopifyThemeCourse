@@ -56,7 +56,7 @@
 -%}
 
 <div class="template-search spaced-section{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %}">
-  <div class="template-search__header page-width center">
+  <div class="template-search__header page-width center mt-5">
     {%- if search.performed -%}
       <h1 class="h2">{{ 'templates.search.title' | t }}</h1>
     {%- else -%}
@@ -66,10 +66,10 @@
       {%- if settings.predictive_search_enabled -%}
         <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
       {%- endif -%} 
-        <form action="{{ routes.search_url }}" method="get" role="search" class="search">
-          <div class="field">
+        <form action="{{ routes.search_url }}" method="get" role="search" class=" mt-2">
+          <div class="form-group mt-1">
             <input
-              class="search__input field__input"
+              class="form-control"
               id="Search-In-Template"
               type="search"
               name="q"
