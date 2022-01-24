@@ -1,0 +1,8 @@
+{
+  "templates": {
+    "404": {
+      "title": "No encontrado morro",
+      "subtext": "intenta de nuevo chato"
+    }
+  }
+}
